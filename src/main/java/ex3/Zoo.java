@@ -8,15 +8,26 @@ import ex3.zones.Zone;
 
 public class Zoo {
 
+	/** Usage : THe name of the zoo
+	*   String : nom
+	*/
 	private String nom;
+	
+	/** Usage : The list of all zones in the zoo
+	*   ArrayList<Zone> : zones
+	*/
 	private ArrayList<Zone> zones;
 	
+	/** Constructor for Zoo
+	 *  @param nom the name of the zoo
+	 */
 	public Zoo(String nom){
 		this.nom = nom;
 		zones = new ArrayList<Zone>();
 		initZoo();
 	}
 	
+	/** Init the zoo with built in zones */
 	private void initZoo(){
 		zones.add(new Zone("Aquarium", 0.2f, AnimalClass.FISH, FoodType.HERBIVORE ));
 		zones.add(new Zone("Ferme au reptiles", 0.1f, AnimalClass.REPTILE, FoodType.CARNIVORE ));
@@ -24,17 +35,22 @@ public class Zoo {
 		zones.add(new Zone("Carnivores", 10f, AnimalClass.MAMAL, FoodType.CARNIVORE));
 	}
 	
+	/** Add an animal to the zoo if an apropriate zone is found
+	 * @param animalToAdd
+	 */
 	public void addAnimal(Animal animalToAdd){
 		
 		for(Zone z : zones){
 			if(z.correctHabitat(animalToAdd)){
 				z.addAnimal(animalToAdd);
+				break;
 			}
 		}
 
 	}
 	
-	public void afficherListeAnimaux(){
+	/** Print the list of all animals sorted by zones */
+	public void printAllAnimals(){
 		for(Zone z : zones){
 			System.out.println(z);
 		}

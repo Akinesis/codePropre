@@ -7,7 +7,8 @@ public class ZooApplication {
 
 	public static void main(String[] args) {
 		Zoo zoo = new Zoo("Thoiry");
-			
+		
+		//Create and add new animals to the zoo
 		zoo.addAnimal(new Animal("Zèbre", AnimalClass.MAMAL, FoodType.HERBIVORE));
 		zoo.addAnimal(new Animal("Lion", AnimalClass.MAMAL, FoodType.CARNIVORE));
 		zoo.addAnimal(new Animal("Panthère", AnimalClass.MAMAL, FoodType.CARNIVORE));
@@ -16,7 +17,7 @@ public class ZooApplication {
 		zoo.addAnimal(new Animal("Boa constrictor", AnimalClass.REPTILE, FoodType.CARNIVORE));
 		zoo.addAnimal(new Animal("Python", AnimalClass.REPTILE, FoodType.CARNIVORE));
 		
-		zoo.afficherListeAnimaux();
+		zoo.printAllAnimals();
 		
 	}
 
