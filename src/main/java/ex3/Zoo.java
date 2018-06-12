@@ -1,38 +1,51 @@
 package ex3;
 
+import java.util.ArrayList;
+
+import ex3.utils.AnimalClass;
+import ex3.utils.FoodType;
+import ex3.zones.Zone;
+
 public class Zoo {
 
 	private String nom;
-	private SavaneAfricaine savaneAfricaine;
-	private ZoneCarnivore zoneCarnivore;
-	private FermeReptile fermeReptile;
-	private Aquarium aquarium;
+	private ArrayList<Zone> zones;
 	
 	public Zoo(String nom){
 		this.nom = nom;
+		zones = new ArrayList<Zone>();
+		initZoo();
 	}
 	
-	public void addAnimal(String nomAnimal, String typeAnimal, String comportement){
-		if (typeAnimal.equals("MAMMIFERE") && comportement.equals("CARNIVORE")){
-			zoneCarnivore.addAnimal(typeAnimal, nomAnimal, comportement);
+	private void initZoo(){
+		zones.add(new Zone("Aquarium", 0.2f, AnimalClass.FISH, FoodType.HERBIVORE ));
+		zones.add(new Zone("Ferme au reptiles", 0.1f, AnimalClass.REPTILE, FoodType.CARNIVORE ));
+		zones.add(new Zone("Savane affricaine", 10f, AnimalClass.MAMAL, FoodType.HERBIVORE));
+		zones.add(new Zone("Carnivores", 10f, AnimalClass.MAMAL, FoodType.CARNIVORE));
+	}
+	
+	public void addAnimal(Animal animalToAdd){
+		
+		for(Zone z : zones){
+			if(z.correctHabitat(animalToAdd)){
+				z.addAnimal(animalToAdd);
+			}
 		}
-		else if (typeAnimal.equals("MAMMIFERE") && comportement.equals("HERBIVORE")){
-			savaneAfricaine.addAnimal(typeAnimal, nomAnimal, comportement);
-		}
-		else if (typeAnimal.equals("REPTILE")){
-			fermeReptile.addAnimal(typeAnimal, nomAnimal, comportement);
-		}
-		else if (typeAnimal.equals("POISSON")){
-			aquarium.addAnimal(typeAnimal, nomAnimal, comportement);
-		}
+
 	}
 	
 	public void afficherListeAnimaux(){
-		savaneAfricaine.afficherListeAnimaux();
-		zoneCarnivore.afficherListeAnimaux();
-		fermeReptile.afficherListeAnimaux();
-		aquarium.afficherListeAnimaux();
+		for(Zone z : zones){
+			System.out.println(z);
+		}
 	}
+	
+	
+	
+	//==============================================================//
+	//************************Getters/Setters***********************//
+	//==============================================================//
+	
 
 	/** Getter for nom
 	 * @return the nom
